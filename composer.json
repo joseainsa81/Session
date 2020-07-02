@@ -1,0 +1,26 @@
+{
+    "name": "joseainsa81/session",
+    "description": "Clase para el manejo de sesiones",
+    "version": "1.0.0",
+    "type": "library",
+    "keywords": ["php", "session"],
+    "readme": "README.md",
+    "time": "2020-01-01",
+    "license": "CC BY 4.0",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "José Julián Aínsa Gutiérrez",
+            "email": "joseainsa81@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^=7.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "joseainsa81\\Session\\": "src/"
+        }
+    }
+}
