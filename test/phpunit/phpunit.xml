@@ -13,7 +13,7 @@
          forceCoversAnnotation="false"
          processIsolation="false">
     <testsuites>
-        <testsuite name="OFI360 Tests">
+        <testsuite name="joseainsa81/Session Tests">
             <directory>./test/</directory>
         </testsuite>
     </testsuites>
