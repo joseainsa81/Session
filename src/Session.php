@@ -380,7 +380,7 @@ class Session
         self::$sid_bits_per_character = 6;
 
         // Me aseguro que esté puesto el valor por defecto
-        self::$save_handler = ' files';
+        self::$save_handler = 'files';
 
         // A parte de modificar las opciones de la sesión activo las funcionalidades de seguridad
 
