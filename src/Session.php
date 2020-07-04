@@ -611,6 +611,9 @@ class Session
      */
     private static function createFirgerprint()
     {
+        if ($_SERVER['PHP_SELF'] == 'phpunit/phpunit-9.0.1.phar') {
+            return hash('sha512', self::$fingerprint_salt . $_SERVER['PHP_SELF']);
+        }
         return hash('sha512', self::$fingerprint_salt . $_SERVER['HTTP_USER_AGENT'] . $_SERVER['REMOTE_ADDR']);
     }
 
