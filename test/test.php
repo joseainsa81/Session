@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,7 +8,7 @@
 
 <body>
   <pre>
-    <?php echo shell_exec('php phpunit/phpunit-9.0.1.phar --process-isolation --configuration="phpunit/phpunit.xml" SessionTest.php'); ?>
+    <?php echo shell_exec('php phpunit/phpunit-9.0.1.phar --configuration="phpunit/phpunit.xml" SessionTest.php'); ?>
   </pre>
 </body>
 
