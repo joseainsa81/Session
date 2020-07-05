@@ -11,9 +11,9 @@
          convertWarningsToExceptions="true"
          colors="true"
          forceCoversAnnotation="false"
-         processIsolation="false">
+         processIsolation="true">
     <testsuites>
-        <testsuite name="joseainsa81/Session Tests">
+        <testsuite name="joseainsa81/Session Test">
             <directory>./test/</directory>
         </testsuite>
     </testsuites>
