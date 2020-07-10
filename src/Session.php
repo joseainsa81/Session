@@ -696,7 +696,7 @@ class Session
     }
 
     /**
-     * @brief Crea un token de sesión
+     * Crea un token de sesión
      *
      * @return string El token creado
      */
