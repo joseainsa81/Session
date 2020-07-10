@@ -414,10 +414,9 @@ class Session
         // Si se pasan valores null se usará lo predeterminado por php.ini
         // Mejoras recomendadas: name, save_path y cookie_domain
         foreach ($options as $key => $value) {
-            if (isset(self::$$key)) {
-                self::$$key = $value;
-            }
+            self::$$key = $value;
         }
+
 
         // Especifica el nombre de la sesión que se usa como nombre de cookie.
         if (self::$name !== null) {
@@ -566,7 +565,6 @@ class Session
      */
     private static function sessionStart()
     {
-
         // Inicia la sesión
         session_start();
 
@@ -694,7 +692,7 @@ class Session
         // Regeneramos el id de sesión
         session_regenerate_id();
         // Eliminamos el archivo antiguo
-        self::unlink($session_id);
+        self::removeFile($session_id);
     }
 
     /**
@@ -741,7 +739,7 @@ class Session
         // Destruimos la sesión
         session_destroy();
         // Eliminamos el archivo de sesión
-        self::unlink($session_id);
+        self::removeFile($session_id);
     }
 
     /**
@@ -750,10 +748,10 @@ class Session
      * @param string $session_id Id de sesión a eliminar
      * @return void
      */
-    private static function unlink($session_id)
+    private static function removeFile($session_id)
     {
-        if (self::$save_handler == ' files' && !empty(self::$save_path)) {
-            $sess_file = self::$save_path . 'sess_' . $session_id;
+        if (self::$save_handler == 'files' && self::$save_path != null) {
+            $sess_file = self::$save_path . '/sess_' . $session_id;
             if (file_exists($sess_file)) {
                 @unlink($sess_file);
             }
