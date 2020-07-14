@@ -1,13 +1,15 @@
 # # [joseainsa81](https://github.com/joseainsa81) / **[Session](https://github.com/joseainsa81/Session)**
 
-Buenos días.
+Buenos días.  
 Esta es una clase para el manejo de las sesiones en php.
-Está optimizada para php 7.3. 
-Todos los parámetros obsoletos en php 7.3 no están incluidos en esta clase.
-Conforme vayan actualizando las versiones de php iré actualizando la clase.
+
+Está optimizada para php 7.3 y superiores.  
+Todos los parámetros de configuración obsoletos en php 7.3 no están incluidos en esta clase.
+
+Conforme vayan actualizando las versiones de php iré actualizando la clase.  
 Si tienes cualquier duda, comentario, si encuentras algún error o si consideras que se puede mejorar esta clase no dudes en ponerte en contacto conmigo.
 
-Esta clase incluye una mejora de seguridad en las opciones por defecto de php.ini.
+Esta clase incluye una mejora de seguridad en las opciones por defecto de php.ini.  
 También incluye mejoras de funcionalidad:
 
 - **Eliminación de archivos de sesión**: Si se especifica la ruta del servidor donde guardar los archivos de sesión, estos serán eliminados mediante la función `unlink()` al ser finalizada la sesión desde la clase [Session.php](https://github.com/joseainsa81/Session/blob/master/src/Session.php "Session.php").
@@ -56,31 +58,139 @@ require 'vendor/autoload.php';
 // Como estamos iniciando $_SESSION recuerda no usar esa variable antes de iniciar la clase
 Session::init();
 ```
+
 ## Parámetros de configuración
 
 ## Huella digital
 
+Esta es una medida para evitar el robo de sesiones.  
+Es un sistema de verificación doble donde cada sesión guarda la IP y los datos de navegador del usuario codificados con el algoritmo sha512.  
+Para mayor seguridad se puede incluir una [sal](https://www.php.net/manual/es/faq.passwords.php#faq.passwords.salt) mediante el parámetro `fingerprint_salt`.
+
+```php
+<?php
+$options = array(
+    'fingerprint_salt' => 'Z@aBa"hj"y'
+);
+Session::init($options);
+```
+
+Por defecto viene activado, si lo quieres desactivar debes pasar el parámetro `fingerprint_enable` con valor `false`.
+
+```php
+<?php
+$options = array(
+    'fingerprint_enable' => false
+);
+Session::init($options);
+```
+
 ## Marca de tiempo
+
+Cada sesión guarda la marca de tiempo durante la que está viva.  
+No se podrá retomar una sesión con una marca de tiempo inferior a la hora actual.  
+De este modo nos aseguramos que un atacante no puede hacerse con sesiones antiguas.
+
+Si un usuario entrara después de que la caducidad ha expirado la sesión se destruirá y se creará una nueva con la variable `$_SESSION['_expired'] = true`.  
+El valor `true` solo estará disponible una sola vez al iniciar la nueva sesión, por defecto esa variable siempre existe y es igual a `false`.  
+Esta variable sirve, por ejemplo, para poder poner el aviso de: *Su sesion ha expirado*.  
+Recuerda que `timeout` debe ser inferior a `gc_maxlifetime` para que todo funcione correctamente.
+
+Por defecto la caducidad de la sesión se establece en 1380 segundos (23 minutos), para cambiar este valor hay que pasar el número de segundos deseados al parámetro `timeout`.
+
+```php
+<?php
+// 3600 segundos = 1 hora
+$options = array(
+    'timeout' => 3600
+);
+Session::init($options);
+```
+
+Por defecto viene activado, si lo quieres desactivar debes pasar el parámetro `timeout_enable` con valor `false`.
+
+```php
+<?php
+$options = array(
+    'timeout_enable' => false
+);
+Session::init($options);
+```
 
 ## Reseteo por número de solicitudes
 
+Como medida de seguridad para evitar el robo de sesiones se recomienda resetear el ID de sesión periódicamente.
+
+Por defecto esta clase resetea el ID de sesión cada 10 peticiones que no sean POST o vía AJAX.  
+Si quieres modificar el intervalo tendrás que pasar el valor que desees como parámetro al iniciar la clase.
+
+```php
+<?php
+// Para resetear el ID de sesion cada 20 peticiones
+$options = array(
+    'reset_limit' => 20
+);
+Session::init($options);
+```
+
+Para comprobar que estamos en una petición POST se evalúa `$_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE']` y `$_SERVER['REQUEST_METHOD'])`.  
+Mientras que para las peticiones vía AJAX se evalúa que `strtolower( $_SERVER['HTTP_X_REQUESTED_WITH'] )` sea igual a `xmlhttprequest`.  
+Puse esta limitación de no resetar en POST ni AJAX para evitar problemas de continuidad con las sesiones.  
+Recuerda pasar la cabecera `X-Requested-With` igual a `XMLHttpRequest` en tus peticiones AJAX.
+
+```javascript
+var xhttp = new XMLHttpRequest();
+xhttp.open(method, url);
+xhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+```
+
+Por defecto viene activado, si lo quieres desactivar debes pasar el parámetro `reset_enable` con valor `false`.
+
+```php
+<?php
+$options = array(
+    'reset_enable' => false
+);
+Session::init($options);
+```
+
 ## Token de sesión
+
+Esta funcionalidad crea un token que se mantiene durante toda la sesión.  
+Puede ser útil en otros puntos de un proyecto para usar como [sal](https://www.php.net/manual/es/faq.passwords.php#faq.passwords.salt) de tokens de formularios.
+
+El token se guarda en la variable `$_SESSION['token']`.
+
+Por defecto viene activado, si lo quieres desactivar debes pasar el parámetro `token_enable` con valor `false`.
+
+```php
+<?php
+$options = array(
+    'token_enable' => false
+);
+Session::init($options);
+```
 
 # Test
 
 La clase viene con un carpeta llamada [test](https://github.com/joseainsa81/Session/tree/master/test "test") donde se incluye la clase [SessionTest.php](https://github.com/joseainsa81/Session/blob/master/test/SessionTest.php "SessionTest.php"). También incluye el archivo [.phar de phpunit](https://phpunit.readthedocs.io/es/latest/installation.html#php-archive-phar) para que no te tengas que preocupar de instalar nada para su ejecución.
+
 Para ejecutar esta clase lo más rápido y cómodo es abrir en tu localhost el archivo [test.php](https://github.com/joseainsa81/Session/blob/master/test/test.php "test.php").
 
 # Docs
 
 La clase viene con un carpeta llamada [docs](https://github.com/joseainsa81/Session/tree/master/docs "docs") donde se incluye la posibilidad de generar la documentación de [phpDocumentor](https://www.phpdoc.org/). También incluye el arhivo [.phar de phpDocumentor](http://phpdoc.org/phpDocumentor.phar) para que no te tengas que preocupar de instalar nada para su ejecución.
+
 Para ello abré en tu localhost el archivo [docs.php](https://github.com/joseainsa81/Session/blob/master/docs/docs.php "docs.php") y pulsa en el enlace **Generar documentación de phpdocumentor**. Una vez creada la documentación ya podrás verla en los enlaces **clean** y **responsive-twig**
  bajo el título **phpDocumentor**.
 
 # Licencia
 
 ![Licencia de Creative Commons - CC BY 4.0](https://i.creativecommons.org/l/by/4.0/88x31.png)
-Este software se distribuye bajo la licencia **CC BY 4.0** ([Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/legalcode.es)). Por favor lea el archivo archivo [LICENSE.md](https://github.com/joseainsa81/Session/blob/master/LICENSE.md "LICENSE.md") para obtener información sobre la disponibilidad y distribución del software.
+
+Este software se distribuye bajo la licencia **CC BY 4.0** ([Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/legalcode.es)). 
+
+Por favor lea el archivo archivo [LICENSE.md](https://github.com/joseainsa81/Session/blob/master/LICENSE.md "LICENSE.md") para obtener información sobre la disponibilidad y distribución del software.
 
 Este programa se distribuye con la esperanza de que sea de utilidad, pero SIN NINGUNA GARANTÍA; ni siquiera la garantía implícita de COMERCIABILIDAD o APTITUD PARA UN PROPÓSITO EN PARTICULAR.
 
