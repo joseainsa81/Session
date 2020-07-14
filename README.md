@@ -61,6 +61,65 @@ Session::init();
 
 ## Parámetros de configuración
 
+Estos son todos los párametros de sesión con sus valores por defecto:  
+*Aunque aquí están todos puestos en la variable `$options` se recomienda solo poner aquellos que quieras sobreescribir.*
+
+```php
+<?php
+$options = array(
+// Valores que se recomienda modificar por seguridad:
+    // Los valores son los de por defecto de php.ini, pero pueden variar en tu servidor
+    'name' => "PHPSESSID",
+    'save_path' => "",
+    'cookie_domain' => "",
+    
+// Valores ya modificados por seguridad:
+    // Le dice al navegador que elimine la cookie al cerrarse
+    'cookie_lifetime' => 0,
+    // Evitar propagación en url
+    'use_cookies' => 1,
+    'use_only_cookies' => 1,
+    // Es obligatorio habilitar session.use_strict_mode por seguridad general de sesión.
+    'use_strict_mode' => 1,
+    // Evita el robo por cross-site scripting
+    'cookie_httponly' => 1,
+    // Evita robo por sniffing, solo para https
+    'cookie_secure' => 1,
+    // Este atributo es una forma de mitigar los ataques CSRF (Cross Site Request Forgery).
+    'cookie_samesite' => 'Lax',
+    // Probabilidad de que la rutina de gc (garbage collection, recolección de basura) se inicie en cada inicialización de sesión.
+    'gc_maxlifetime' => 1440,
+    'gc_probability' => 1,
+    'gc_divisor' => 1000,
+    // deshabilitar la administración transparente de ID de sesión mejora la seguridad general de ID de sesión al eliminar la posibilidad de una inyección o fuga de ID de sesión.
+    'use_trans_sid' => 0,
+    // Especifica el método de control de caché usado por páginas de sesión
+    'cache_limiter' => 'nocache',  
+    // IDs de sessión más fuertes
+    'sid_length' => 48,
+    'sid_bits_per_character' => 6,  
+    // Me aseguro que esté puesto el valor por defecto
+    'save_handler' => 'files',
+
+// Otros parámetros de la configuración en tiempo de ejecución
+    // Los valores son los de por defecto de php.ini, pero pueden variar en tu servidor
+    'serialize_handler' => "php",
+    'cookie_path' => "/",
+    'referer_check' => "",
+    'cache_expire' => "180",
+    'trans_sid_tags' => "a=href,area=href,frame=src,form=",
+    'trans_sid_hosts' => $_SERVER['HTTP_HOST'],
+    'upload_progress_enabled' => "1",
+    'upload_progress_cleanup' => "1",
+    'upload_progress_prefix' => "upload_progress_",
+    'upload_progress_name' => "PHP_SESSION_UPLOAD_PROGRESS",
+    'upload_progress_freq' => "1%",
+    'upload_progress_min_freq' => "1",
+    'lazy_write' => "1" 
+);
+Session::init($options);
+```
+
 ## Huella digital
 
 Esta es una medida para evitar el robo de sesiones.  
