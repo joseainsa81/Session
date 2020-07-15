@@ -11,7 +11,7 @@
  * @version   v.1.0.0 (2020-01-01)
  */
 
-use Joseainsa81\Session\Session;
+use joseainsa81\Session\Session;
 
 /**
  * Clase Test de Joseainsa81\Session
