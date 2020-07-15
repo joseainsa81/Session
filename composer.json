@@ -7,7 +7,6 @@
     "readme": "README.md",
     "time": "2020-01-01",
     "license": "CC BY 4.0",
-    "minimum-stability": "stable",
     "authors": [
         {
             "name": "José Julián Aínsa Gutiérrez",
