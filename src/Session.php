@@ -11,7 +11,7 @@
  * @version   v.1.0.0 (2020-01-01)
  */
 
-namespace Joseainsa81\Session;
+namespace joseainsa81\Session;
 
 /**
  * Session - Clase para el manejo de la sesiones php
