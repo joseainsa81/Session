@@ -35,7 +35,7 @@ Alternativamente, si no estás utilizando Composer, copia el contenido de la car
 
 ```php
 <?php
-use Joseainsa81\Session\Session;
+use joseainsa81\Session\Session;
 require 'path/to/src/Session.php';
 ```
 
@@ -47,7 +47,7 @@ require 'path/to/src/Session.php';
 <?php
 // Importa la clase en el espacio de nombres global
 // Recuerda que se debe importar en la parte superior del script, no dentro de una función
-use Joseainsa81\Session\Session;
+use joseainsa81\Session\Session;
 
 // Carga el autoload de Composer
 require 'vendor/autoload.php';
