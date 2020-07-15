@@ -45,7 +45,7 @@ class Session
     private static $save_path = null;
 
     /**
-     * Probabilidad para manejar la probabilidad de que la rutina de gc se inicie
+     * Probabilidad para manejar la probabilidad de que la rutina de gc se inicie.
      *
      * @see https://www.php.net/manual/es/session.configuration.php#ini.session.gc-probability
      * @var int|null
@@ -53,7 +53,7 @@ class Session
     private static $gc_probability = null;
 
     /**
-     * Divisor para manejar la probabilidad de que la rutina de gc se inicie
+     * Divisor para manejar la probabilidad de que la rutina de gc se inicie.
      *
      * @see https://www.php.net/manual/es/session.configuration.php#ini.session.gc-divisor
      * @var int|null
@@ -61,7 +61,7 @@ class Session
     private static $gc_divisor = null;
 
     /**
-     * Define cuánto tiempo se mantendrá viva una sesión PHP no utilizada
+     * Define cuánto tiempo se mantendrá viva una sesión PHP no utilizada.
      *
      * @see https://www.php.net/manual/es/session.configuration.php#ini.session.gc-maxlifetime
      * @var int|null
@@ -301,7 +301,7 @@ class Session
      *
      * @var int
      */
-    private static $timeout = 1380;
+    private static $timeout = 1200; // 20 minutos
 
     /**
      * Activa el reseteo por número de solicitudes
@@ -315,7 +315,7 @@ class Session
      *
      * @var int
      */
-    private static $reset_limit = 10;
+    private static $reset_limit = 20;
 
     /**
      * Activa la creación de un token de sessión para usarlo de forma externa a esta clase
@@ -342,7 +342,7 @@ class Session
         self::$use_cookies = 1;
         self::$use_only_cookies = 1;
 
-        // Es obligatoria habilitar session.use_strict_mode por seguridad general de sesión. 
+        // Es obligatorio habilitar session.use_strict_mode por seguridad general de sesión. 
         self::$use_strict_mode = 1;
 
         // Evita el robo por cross-site scripting
@@ -389,11 +389,9 @@ class Session
 
         // Activo la marca de tiempo
         self::$timeout_enable = true;
-        self::$timeout = 1200; // 20 minutos
 
         // Activo el reseteo de id de sesión
         self::$reset_enable = true;
-        self::$reset_limit = 20;
 
         // Activo la creación de un token de sesión
         self::$token_enable = true;
