@@ -668,8 +668,8 @@ class Session
         if (!isset($_SESSION['_n'])) {
             // Si viene vacío iniciamos contador
             $_SESSION['_n'] = 1;
-        } else if ($_SESSION['_n'] <= self::$reset_limit) {
-            // Si es menor o igual que self::$reset_limit no reseteamos 
+        } else if ($_SESSION['_n'] < self::$reset_limit) {
+            // Si es menor que self::$reset_limit no reseteamos 
             $_SESSION['_n'] = $_SESSION['_n'] + 1;
         } else {
             // Si no cumple con lo anterior lo reseteamos
