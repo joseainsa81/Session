@@ -61,8 +61,42 @@ Session::init();
 
 ## Parámetros de configuración
 
-Estos son todos los párametros de sesión con sus valores por defecto:  
-*Aunque aquí están todos puestos en la variable `$options` se recomienda solo poner aquellos que quieras sobreescribir.*
+Estos son los parámetros de configurarción en tiempo de ejecución que se pueden establecer desde la clase:
+
+- **name**: Especifica el nombre de la sesión que se usa como nombre de cookie. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.name).
+- **save_handler**: Define el nombre del gestor que se usa para almacenar y recuperar información asociada con una sesión. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.save-handler).
+- **save_path**: Define el argumento que es pasado al gestor de almacenamiento. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.save-path).
+- **gc_probability**: Probabilidad para manejar la probabilidad de que la rutina de gc se inicie. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.gc-probability).
+- **gc_divisor**: Divisor para manejar la probabilidad de que la rutina de gc se inicie. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.gc-divisor).
+- **gc_maxlifetime**: Define cuánto tiempo se mantendrá viva una sesión PHP no utilizada. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.gc-maxlifetime).
+- **serialize_handler**: Define el nombre del manejador que se usa para serializar/deserializar datos. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.serialize-handler).
+- **cookie_lifetime**: Especifica el tiempo de vida en segundos de la cookie que es enviada al navegador. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.cookie-lifetime).
+- **cookie_path**: Especifica la ruta a establecer en la cookie de sesión. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.cookie-path).
+- **cookie_domain**: Especifica el dominio a establecer en la cookie de sesión. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.cookie-domain).
+- **cookie_secure**: Especifica si las cookies deberían enviarse sólo sobre conexiones seguras. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.cookie-secure).
+- **cookie_httponly**: Marca la cookie como accesible sólo a través del protocolo HTTP. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.cookie-httponly).
+- **cookie_samesite**: Permite a los servidores afirmar que no se debe enviar una cookie junto con solicitudes entre sitios. [Más info](https://www.php.net/manual/en/session.configuration.php#ini.session.cookie-samesite).
+- **use_strict_mode**: Especifica si el módulo usará el modo de id de sesión estricto. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.use-strict-mode).
+- **use_cookies**: Especifica si el módulo usará cookies para almacenar el id de sesión en la parte del cliente. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.use-cookies).
+- **use_only_cookies**: Especifica si el módulo sólo usará cookies para almacenar el id de sesión en la parte del cliente. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.use-only-cookies).
+- **referer_check**: Contiene la subcadena para comprobar cada HTTP Referer. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.referer-check).
+- **cache_limiter**: Especifica el método de control de caché usado por páginas de sesión. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.cache-limiter).
+- **cache_expire**: Especifica el tiempo de vida en minutos para las páginas de sesión examinadas, esto no tiene efecto para el limitador nocache. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.cache-expire).
+- **use_trans_sid**: Si está habilitado sid transparente o no. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.use-trans-sid).
+- **trans_sid_tags**: Especifica cuáles etiquetas HTML son reescritas para incluir el ID de sesión cuando está habilitado el soporte para SID transparente. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.trans-sid-tags).
+- **trans_sid_hosts**: Especifica los hosts que se reescriben para incluir el ID de sesión cuando el soporte para SID transparente está habilitado. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.trans-sid-hosts).
+- **sid_length**: Especificar la longitud de la cadena del ID de sesión. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.sid-length).
+- **sid_bits_per_character**: Especifica el número de bits en caracteres de ID de sesión codificados. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.hash-bits-per-character).
+- **upload_progress_enabled**: Habilita el seguimiento del progreso de subida de ficheros, rellenado la variable $_SESSION. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.upload-progress.enabled).
+- **upload_progress_cleanup**: Limpieza de la información del progreso al finalizar la lectura de los datos del POST. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.upload-progress.cleanup).
+- **upload_progress_prefix**: Prefijo usado para la clave del progreso de subida en $_SESSION. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.upload-progress.prefix).
+- **upload_progress_name**: El nombre de la clave a usar en $_SESSION para guardar la información del progreso de subida. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.upload-progress.name).
+- **upload_progress_freq**: Determina cada cuanto debería actualizarse la información del proceso de subida. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.upload-progress.freq).
+- **upload_progress_min_freq**: El retraso mínimo entre actualizaciones, en segundos. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.upload-progress.min-freq).
+- **lazy_write**: Si está habilitado significa que los datos de sesión solamente son rescritos si cambian. [Más info](https://www.php.net/manual/es/session.configuration.php#ini.session.lazy-write).
+
+
+*Aunque en el ejemplo están todos los parámetros puestos en la variable `$options` se recomienda solo poner aquellos que quieras sobreescribir.*
 
 ```php
 <?php
@@ -155,7 +189,7 @@ El valor `true` solo estará disponible una sola vez al iniciar la nueva sesión
 Esta variable sirve, por ejemplo, para poder poner el aviso de: *Su sesion ha expirado*.  
 Recuerda que `timeout` debe ser inferior a `gc_maxlifetime` para que todo funcione correctamente.
 
-Por defecto la caducidad de la sesión se establece en 1380 segundos (23 minutos), para cambiar este valor hay que pasar el número de segundos deseados al parámetro `timeout`.
+Por defecto la caducidad de la sesión se establece en 1200 segundos (20 minutos), para cambiar este valor hay que pasar el número de segundos deseados al parámetro `timeout`.
 
 ```php
 <?php
