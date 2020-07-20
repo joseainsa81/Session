@@ -264,19 +264,6 @@ $options = array(
 Session::init($options);
 ```
 
-# Test
-
-La clase viene con un carpeta llamada [test](https://github.com/joseainsa81/Session/tree/master/test "test") donde se incluye la clase [SessionTest.php](https://github.com/joseainsa81/Session/blob/master/test/SessionTest.php "SessionTest.php"). También incluye el archivo [.phar de phpunit](https://phpunit.readthedocs.io/es/latest/installation.html#php-archive-phar) para que no te tengas que preocupar de instalar nada para su ejecución.
-
-Para ejecutar esta clase lo más rápido y cómodo es abrir en tu localhost el archivo [test.php](https://github.com/joseainsa81/Session/blob/master/test/test.php "test.php").
-
-# Docs
-
-La clase viene con un carpeta llamada [docs](https://github.com/joseainsa81/Session/tree/master/docs "docs") donde se incluye la posibilidad de generar la documentación de [phpDocumentor](https://www.phpdoc.org/). También incluye el arhivo [.phar de phpDocumentor](http://phpdoc.org/phpDocumentor.phar) para que no te tengas que preocupar de instalar nada para su ejecución.
-
-Para ello abré en tu localhost el archivo [docs.php](https://github.com/joseainsa81/Session/blob/master/docs/docs.php "docs.php") y pulsa en el enlace **Generar documentación de phpdocumentor**. Una vez creada la documentación ya podrás verla en los enlaces **clean** y **responsive-twig**
- bajo el título **phpDocumentor**.
-
 # Licencia
 
 ![Licencia de Creative Commons - CC BY 4.0](https://i.creativecommons.org/l/by/4.0/88x31.png)
